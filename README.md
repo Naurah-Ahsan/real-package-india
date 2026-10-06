@@ -1,7 +1,5 @@
 The Real Package
 
-→ Open the live tool 
-
 An interactive tool that puts the "average package" on an Indian engineering college brochure next to what engineering graduates actually earn — and works out how long the real number takes to pay the degree back.
 
 The question
