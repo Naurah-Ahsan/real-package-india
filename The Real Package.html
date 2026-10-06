@@ -1,0 +1,516 @@
+<title>The Real Package</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: zine poster — flat colour blocks, 3px ink rules, hard offset shadows, stickers tilted off-axis. */
+:root{
+  --paper:#FBFAF7;
+  --surface:#FFFFFF;
+  --band:#F0EFEA;
+  --ink:#141219;
+  --ink-mid:#5D5A68;
+  --rule:#141219;
+  --hair:#DDDBD4;
+  --pink:#F0286B;
+  --blue:#2B3FD8;
+  --lime:#C9F24C;
+  --lime-ink:#141219;
+  --shadow:#141219;
+  --display:"Anton",Impact,"Haettenschweiler","Arial Narrow",sans-serif;
+  --body:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E0D12;
+    --surface:#17161E;
+    --band:#1E1D27;
+    --ink:#F6F4F0;
+    --ink-mid:#9D99A8;
+    --rule:#3A3847;
+    --hair:#2A2834;
+    --pink:#FF5C8D;
+    --blue:#7C8CFF;
+    --lime:#D7FF5E;
+    --lime-ink:#141219;
+    --shadow:#3A3847;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E0D12;
+  --surface:#17161E;
+  --band:#1E1D27;
+  --ink:#F6F4F0;
+  --ink-mid:#9D99A8;
+  --rule:#3A3847;
+  --hair:#2A2834;
+  --pink:#FF5C8D;
+  --blue:#7C8CFF;
+  --lime:#D7FF5E;
+  --lime-ink:#141219;
+  --shadow:#3A3847;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:900px;margin:0 auto;padding-inline:20px;padding-block:0 100px}
+.num{font-variant-numeric:tabular-nums}
+
+/* top strip */
+.strip{
+  display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;
+  padding-block:16px 14px;margin-bottom:34px;
+  font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-mid);
+  border-bottom:3px solid var(--rule);
+}
+.strip .dot{width:9px;height:9px;background:var(--pink);border-radius:50%;flex:none}
+.strip .end{margin-left:auto}
+
+/* hero */
+h1{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(3.6rem,15vw,8.2rem);line-height:.84;letter-spacing:-.005em;
+  margin:0 0 18px;max-width:11ch;text-transform:uppercase;text-wrap:balance;
+}
+h1 .hl{color:var(--pink)}
+.stand{font-size:clamp(1.02rem,2.3vw,1.2rem);max-width:56ch;margin:0;color:var(--ink-mid)}
+.stand b{color:var(--ink);font-weight:700}
+.tag-row{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
+.chip{
+  font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  padding:6px 12px;border:2px solid var(--rule);border-radius:999px;
+}
+.chip.a{background:var(--lime);color:var(--lime-ink);border-color:var(--lime-ink)}
+.chip.b{background:transparent;color:var(--ink)}
+
+/* form */
+.form{margin-top:42px;border:3px solid var(--rule);background:var(--surface);box-shadow:7px 7px 0 var(--shadow)}
+.fr{
+  display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center;justify-content:space-between;
+  padding:14px 16px;border-bottom:2px solid var(--hair);
+}
+.fr:last-child{border-bottom:0}
+.fr label{flex:1 1 200px;font-size:14.5px;font-weight:700;min-width:0}
+.fr .sub{display:block;font-weight:400;font-size:12.5px;color:var(--ink-mid);margin-top:1px;line-height:1.4}
+.ctl{flex:0 1 320px;min-width:190px}
+select,input[type=number]{
+  width:100%;font-family:var(--body);font-size:15px;font-weight:500;
+  background:var(--paper);color:var(--ink);
+  border:2px solid var(--rule);border-radius:7px;padding:9px 11px;
+}
+:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:46px}
+.tile{border:3px solid var(--rule);background:var(--surface);padding:18px 16px;min-width:0}
+.tile.flag{background:var(--pink);border-color:var(--rule);box-shadow:7px 7px 0 var(--shadow)}
+.tile.flag .k,.tile.flag .n{color:#FFF1F5}
+.tile.flag .v{color:#FFFFFF}
+.tile .k{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-mid);line-height:1.35}
+.tile .v{font-family:var(--display);font-size:clamp(2rem,7vw,2.9rem);line-height:1;margin-top:10px;word-break:break-word}
+.tile .n{font-size:12.5px;color:var(--ink-mid);margin-top:6px;line-height:1.45}
+
+/* sections */
+.sec{margin-top:60px}
+.sh{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.sh h2{
+  font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,5vw,2.1rem);
+  margin:0;text-transform:uppercase;letter-spacing:.005em;
+  background:var(--lime);color:var(--lime-ink);
+  border:3px solid var(--lime-ink);padding:5px 13px 3px;transform:rotate(-1deg);
+}
+.sh .tag{margin-left:auto;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mid)}
+.lede{max-width:62ch;margin:0 0 18px;color:var(--ink-mid);font-size:15.5px}
+
+/* ledger */
+.ledger{border:3px solid var(--rule);background:var(--surface);box-shadow:7px 7px 0 var(--shadow)}
+.li{display:flex;gap:14px;align-items:baseline;padding:13px 16px;border-bottom:2px solid var(--hair)}
+.li:last-child{border-bottom:0}
+.li .d{flex:1;font-size:14.5px;font-weight:500;min-width:0}
+.li .d em{display:block;font-style:normal;font-size:12.5px;color:var(--ink-mid);font-weight:400;margin-top:2px}
+.li .a{font-family:var(--display);font-size:1.25rem;white-space:nowrap;text-align:right;color:var(--pink)}
+.li.tot{background:var(--ink)}
+.li.tot .d{color:var(--paper);font-weight:700;font-size:15px}
+.li.tot .a{color:var(--lime);font-size:1.7rem}
+
+/* verdict */
+.verdict{
+  position:relative;text-align:center;margin-top:34px;
+  border:3px solid var(--rule);background:var(--surface);box-shadow:9px 9px 0 var(--shadow);
+  padding:56px 18px 48px;
+}
+.big{font-family:var(--display);font-size:clamp(4.4rem,20vw,9.5rem);line-height:.82;margin:0;color:var(--pink)}
+.bigsub{font-size:15px;color:var(--ink-mid);margin:16px auto 0;max-width:40ch}
+.stamp{
+  display:inline-block;margin-top:28px;padding:9px 22px 7px;
+  font-family:var(--display);font-size:clamp(1.1rem,4.6vw,1.75rem);letter-spacing:.03em;text-transform:uppercase;
+  background:var(--lime);color:var(--lime-ink);border:3px solid var(--lime-ink);
+  transform:rotate(-2.5deg);
+}
+.stamp.drop{animation:drop .4s cubic-bezier(.2,1.5,.5,1) both}
+@keyframes drop{from{transform:rotate(-13deg) scale(2.4);opacity:0}to{transform:rotate(-2.5deg) scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.stamp.drop{animation:none}}
+.after{font-size:14.5px;color:var(--ink-mid);max-width:50ch;margin:24px auto 0}
+.after b{color:var(--ink);font-weight:700}
+
+/* charts */
+.chart{border:3px solid var(--rule);background:var(--surface);padding:14px;overflow-x:auto;box-shadow:7px 7px 0 var(--shadow)}
+svg{display:block;width:100%;height:auto;min-width:440px}
+.key{display:flex;flex-wrap:wrap;gap:7px 20px;margin-top:14px;font-size:12.5px;color:var(--ink-mid)}
+.key span{display:flex;align-items:center;gap:7px}
+.sw{width:20px;height:0;border-top-width:3px;border-top-style:solid;flex:none}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.fact{border:3px solid var(--rule);background:var(--surface);padding:17px 15px}
+.fact .v{font-family:var(--display);font-size:2.3rem;line-height:1;color:var(--blue)}
+.fact .t{font-size:13.5px;color:var(--ink-mid);margin-top:9px;line-height:1.5}
+
+/* method */
+details{border:3px solid var(--rule);background:var(--surface);padding:13px 15px;margin-bottom:10px}
+summary{cursor:pointer;font-size:14.5px;font-weight:700;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--pink);font-weight:700}
+details[open] summary::before{content:"\2212 "}
+details p,details ul{font-size:14px;color:var(--ink-mid);max-width:66ch}
+details li{margin-bottom:7px}
+code{font-family:var(--body);font-weight:700;font-size:13px;background:var(--band);padding:1px 5px;border-radius:4px}
+
+footer{margin-top:56px;padding-top:16px;border-top:3px solid var(--rule);font-size:12.5px;color:var(--ink-mid)}
+
+@media (max-width:640px){
+  .strip .end{margin-left:0;width:100%}
+  .ctl{flex:1 1 100%}
+  .tiles{grid-template-columns:1fr}
+  .verdict{padding:42px 14px 36px}
+  .form,.ledger,.chart,.verdict{box-shadow:5px 5px 0 var(--shadow)}
+}
+</style>
+
+<div class="wrap">
+
+  <div class="strip">
+    <span class="dot"></span>
+    <span>Engineering · India · 2026</span>
+    <span class="end">India Skills Report · PLFS · published fee structures</span>
+  </div>
+
+  <header>
+    <h1>The real <span class="hl">package</span></h1>
+    <p class="stand">Your college puts an average package on the brochure. The median engineering graduate aged 22 to 26 who actually has a job takes home <b>₹28,000 a month</b>. Pick your setup and find out how long the real number takes to pay the degree back.</p>
+    <div class="tag-row">
+      <span class="chip a">Coaching years counted</span>
+      <span class="chip b">Drop years counted</span>
+      <span class="chip b">Brochure checked</span>
+    </div>
+  </header>
+
+  <div class="form">
+    <div class="fr">
+      <label for="branch">Branch
+        <span class="sub">Sets both the salary basis and the employability rate</span>
+      </label>
+      <div class="ctl"><select id="branch"></select></div>
+    </div>
+    <div class="fr">
+      <label for="college">College
+        <span class="sub">Four-year cost including hostel and mess</span>
+      </label>
+      <div class="ctl"><select id="college"></select></div>
+    </div>
+    <div class="fr">
+      <label for="coach">How you prepared
+        <span class="sub">Cost per year of preparation</span>
+      </label>
+      <div class="ctl"><select id="coach"></select></div>
+    </div>
+    <div class="fr">
+      <label for="prep">Years of entrance prep
+        <span class="sub">Drop years included. They cost money too</span>
+      </label>
+      <div class="ctl"><select id="prep">
+        <option value="0">None</option>
+        <option value="1">1 year</option>
+        <option value="2" selected>2 years</option>
+        <option value="3">3 years, one drop</option>
+        <option value="4">4 years, two drops</option>
+      </select></div>
+    </div>
+    <div class="fr">
+      <label for="pkg">Average package on the brochure
+        <span class="sub">In lakhs per annum, as advertised</span>
+      </label>
+      <div class="ctl"><input type="number" id="pkg" value="8" min="0" max="100" step="0.5"></div>
+    </div>
+  </div>
+
+  <div class="tiles">
+    <div class="tile"><div class="k">Brochure says</div><div class="v num" id="tBro">—</div><div class="n">average package advertised</div></div>
+    <div class="tile"><div class="k">Graduates actually earn</div><div class="v num" id="tReal">—</div><div class="n" id="tRealNote">median, employed, age 22–26</div></div>
+    <div class="tile flag"><div class="k">That brochure figure is at</div><div class="v num" id="tPct">—</div><div class="n">of what graduates really earn</div></div>
+  </div>
+
+  <section class="sec">
+    <div class="sh"><h2>The bill</h2><span class="tag num" id="ledTag"></span></div>
+    <div class="ledger" id="ledger"></div>
+
+    <div class="verdict">
+      <p class="big num" id="beBig">—</p>
+      <p class="bigsub" id="beSub"></p>
+      <div class="stamp" id="stamp">—</div>
+      <p class="after" id="after"></p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sh"><h2>Where the brochure sits</h2></div>
+    <p class="lede" id="distLede"></p>
+    <div class="chart"><svg id="dist" viewBox="0 0 800 330" role="img" aria-labelledby="distT"><title id="distT">Distribution of monthly earnings for employed engineering graduates, with the advertised package marked</title></svg></div>
+    <div class="key"><span>Curve modelled from two published points — the median and the 90th percentile</span></div>
+  </section>
+
+  <section class="sec">
+    <div class="sh"><h2>Paying it off</h2></div>
+    <p class="lede">You start underwater: coaching fees, then college fees, nothing coming in. The line climbs once you're earning. Zero is the day the degree has paid for itself.</p>
+    <div class="chart"><svg id="cross" viewBox="0 0 800 400" role="img" aria-labelledby="crossT"><title id="crossT">Net position over time, on the advertised package and on real graduate earnings</title></svg></div>
+    <div class="key">
+      <span><i class="sw" style="border-top-color:var(--blue)"></i> If the brochure were true</span>
+      <span><i class="sw" style="border-top-color:var(--pink)"></i> What the data says</span>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sh"><h2>Nobody prints this</h2></div>
+    <div class="facts">
+      <div class="fact"><div class="v num" id="fEmp">—</div><div class="t" id="fEmpT"></div></div>
+      <div class="fact"><div class="v num">1.8×</div><div class="t">India's NIRF-ranked engineering colleges together claim 1.8 times more entry-level ₹6 lakh placements than the whole country has such jobs — after every reported salary was already cut by 20%.</div></div>
+      <div class="fact"><div class="v num">11.2%</div><div class="t">Unemployment among Indian graduates, against 3.1% nationally. A degree makes you more than three times as likely to be unemployed as the average worker.</div></div>
+      <div class="fact"><div class="v num">₹50k</div><div class="t">Monthly pay at the 90th percentile for an employed engineering graduate aged 22–26. Nine in ten earn less than this.</div></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sh"><h2>How this works</h2></div>
+    <details>
+      <summary>The arithmetic</summary>
+      <p>Every preparation year charges the coaching cost. Every college year charges a quarter of the four-year total. Nothing comes in during either. From graduation the engineer earns the chosen salary basis, rising 8% a year, since early-career salary growth in India runs well ahead of general wage growth.</p>
+      <p>Payback is the first year total earnings cover total cost. Everything is pre-tax, in nominal rupees, and education loan interest is left out, which would push payback later.</p>
+    </details>
+    <details>
+      <summary>Where the numbers come from</summary>
+      <ul>
+        <li><b>What graduates earn</b> — analysis of Periodic Labour Force Survey data: ₹28,000 a month is the median for an employed engineering graduate aged 22–24, and ₹50,000 is the 90th percentile. Of employed engineering graduates, 58% work in software, earning ₹32,600 a month.</li>
+        <li><b>Employability by branch</b> — India Skills Report 2026 (Wheebox and ETS). Computer science scores 80% and IT 78%; engineering overall is 70.15%, down from 71.5% in 2025.</li>
+        <li><b>Graduate unemployment</b> — PLFS Annual Report 2025, released by the National Statistical Office in March 2026: 11.2% among graduates against 3.1% nationally.</li>
+        <li><b>Placement claims</b> — reconciliation of NIRF-ranked colleges' reported placements against the national supply of entry-level jobs at that salary.</li>
+        <li><b>Fees</b> — published 2026 fee structures. State government colleges run ₹8–13 lakh over four years including hostel; premium private deemed universities exceed ₹30 lakh.</li>
+        <li><b>Coaching</b> — published 2026 institute fees. Kota or a metro branch with hostel runs ₹3.5–5.5 lakh a year once food, travel and books are counted; online coaching runs ₹40,000–1.5 lakh a year.</li>
+      </ul>
+      <p>Branch employability marked <code>≈</code> is estimated inside the published spread rather than taken from a specific figure. The percentile for the advertised package is modelled by fitting a lognormal curve to the published median and 90th percentile, so read it as an estimate of position, not a measured value.</p>
+    </details>
+    <details>
+      <summary>What this leaves out on purpose</summary>
+      <p>Part-time work and internships. Education loan interest. Tax. The enormous gap between an IIT graduate and a tier-three college graduate, which a national median flattens. Scholarships and fee waivers. The fact that people who clear entrance exams differ from those who don't in ways that would show up in their earnings anyway.</p>
+      <p>It also treats a degree purely as a financial instrument, which is the one thing it certainly is not.</p>
+    </details>
+  </section>
+
+  <footer>National medians. Your own number will differ, and for a small minority it will differ enormously — which is exactly what an average package hides.</footer>
+</div>
+
+<script>
+const BRANCHES=[
+ {n:"Computer Science",emp:.80,wage:32600,src:1,note:"software median, age 22–26"},
+ {n:"Information Technology",emp:.78,wage:32600,src:1,note:"software median, age 22–26"},
+ {n:"Electronics & Communication",emp:.68,wage:28000,note:"overall median, age 22–26"},
+ {n:"Electrical",emp:.63,wage:28000,note:"overall median, age 22–26"},
+ {n:"Mechanical",emp:.60,wage:28000,note:"overall median, age 22–26"},
+ {n:"Civil",emp:.58,wage:28000,note:"overall median, age 22–26"},
+ {n:"Chemical",emp:.62,wage:28000,note:"overall median, age 22–26"},
+ {n:"Biotechnology",emp:.55,wage:28000,note:"overall median, age 22–26"},
+ {n:"Other / engineering overall",emp:.7015,wage:28000,src:1,note:"overall median, age 22–26"}
+];
+const COLLEGES=[
+ {n:"IIT, NIT or IIIT",total:1000000},
+ {n:"State government college",total:800000},
+ {n:"Private college, state quota",total:900000},
+ {n:"Private college, management quota",total:1600000},
+ {n:"Private deemed university (BITS, VIT, SRM, Manipal)",total:3000000}
+];
+const COACH=[
+ {n:"Kota or a metro branch, with hostel",yr:350000},
+ {n:"Coaching in my own city, living at home",yr:80000},
+ {n:"Online coaching only",yr:60000},
+ {n:"Self-study — books and test series",yr:6000},
+ {n:"Didn't prepare / no coaching",yr:0}
+];
+
+const MED=28000, P90=50000;
+const MU=Math.log(MED), SIG=(Math.log(P90)-Math.log(MED))/1.2815515655;
+
+function erf(x){const s=x<0?-1:1;x=Math.abs(x);
+ const a1=.254829592,a2=-.284496736,a3=1.421413741,a4=-1.453152027,a5=1.061405429,p=.3275911;
+ const t=1/(1+p*x);
+ return s*(1-((((a5*t+a4)*t+a3)*t+a2)*t+a1)*t*Math.exp(-x*x));}
+const cdf=z=>.5*(1+erf(z/Math.SQRT2));
+const pctOf=m=>cdf((Math.log(m)-MU)/SIG);
+const pdf=m=>Math.exp(-Math.pow(Math.log(m)-MU,2)/(2*SIG*SIG))/(m*SIG*Math.sqrt(2*Math.PI));
+
+const $=i=>document.getElementById(i);
+const inr=n=>"₹"+Math.round(n).toLocaleString("en-IN");
+const lk=n=>"₹"+(n/100000).toFixed((n<1000000&&n>0)?2:1)+" L";
+const ord=p=>{const v=Math.round(p*100);const s=["th","st","nd","rd"],k=v%100;return v+(s[(k-20)%10]||s[k]||s[0]);};
+
+BRANCHES.forEach((b,i)=>$("branch").add(new Option(b.n,i)));
+COLLEGES.forEach((c,i)=>$("college").add(new Option(c.n,i)));
+COACH.forEach((c,i)=>$("coach").add(new Option(c.n,i)));
+
+const HORIZON=34, START_AGE=17, GROWTH=.08, CY=4;
+
+function model(prepYr,coachYr,collegeTotal,startAnnual){
+  const ca=collegeTotal/CY;
+  let net=0,path=[];
+  for(let y=1;y<=HORIZON;y++){
+    if(y<=prepYr) net-=coachYr;
+    else if(y<=prepYr+CY) net-=ca;
+    else net+=startAnnual*Math.pow(1+GROWTH,y-prepYr-CY-1);
+    path.push({y,net});
+  }
+  const hit=path.find(p=>p.net>=0);
+  return {path,be:hit?hit.y:null};
+}
+
+function verdict(be,prepYr){
+  if(be===null) return {t:"Never pays back",a:"On this salary the degree doesn't clear its own cost inside a 34-year window. That doesn't make it a mistake. It makes it a purchase rather than an investment."};
+  const after=be-prepYr-CY;
+  if(after<=2) return {t:"Pays for itself",a:"Cleared before you're 26, then it compounds for forty years. This is the version the brochure is describing."};
+  if(after<=5) return {t:"Worth it",a:"Your early twenties go on clearing the cost and everything after is yours. The ordinary deal, and a fine one."};
+  if(after<=10) return {t:"Long road",a:"The premium is real but it lands late. Switch the college to a state government seat and watch how much that single change moves this."};
+  return {t:"Brutal",a:"At this cost against this salary the maths barely holds. College choice moves this number far more than branch choice does."};
+}
+
+function lineChart(real,bro,prepYr){
+  const W=800,H=400,L=84,R=26,T=24,B=50,iw=W-L-R,ih=H-T-B;
+  const show=Math.min(HORIZON, real.be?Math.max(real.be+6,16):26);
+  const d=real.path.slice(0,show), bd=bro.path.slice(0,show);
+  const vals=[...d.map(p=>p.net),...bd.map(p=>p.net)];
+  const lo=Math.min(0,...vals), hi=Math.max(...vals,1);
+  const X=y=>L+(y/show)*iw, Y=v=>T+ih-((v-lo)/(hi-lo))*ih;
+  const mk=a=>a.map((p,i)=>(i?"L":"M")+X(p.y).toFixed(1)+" "+Y(p.net).toFixed(1)).join(" ");
+  let g="";
+  for(let i=0;i<=4;i++){
+    const v=lo+(hi-lo)*i/4, y=Y(v);
+    g+=`<line x1="${L}" y1="${y.toFixed(1)}" x2="${W-R}" y2="${y.toFixed(1)}" stroke="var(--hair)" stroke-width="1"/>`
+     + `<text x="${L-11}" y="${(y+4).toFixed(1)}" text-anchor="end" font-family="DM Sans,sans-serif" font-size="12" fill="var(--ink-mid)">${v<0?"−":""}₹${(Math.abs(v)/100000).toFixed(0)}L</text>`;
+  }
+  g+=`<line x1="${L}" y1="${Y(0).toFixed(1)}" x2="${W-R}" y2="${Y(0).toFixed(1)}" stroke="var(--ink)" stroke-width="2.5"/>`
+   + `<text x="${W-R}" y="${(Y(0)-8).toFixed(1)}" text-anchor="end" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="var(--ink)">paid off</text>`;
+  const step=Math.max(2,Math.round(show/8));
+  for(let y=0;y<=show;y+=step)
+    g+=`<text x="${X(y).toFixed(1)}" y="${H-26}" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="var(--ink-mid)">${START_AGE+y}</text>`;
+  g+=`<text x="${(L+iw/2).toFixed(0)}" y="${H-7}" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="var(--ink-mid)">age</text>`;
+  const endStudy=prepYr+CY;
+  g+=`<rect x="${L}" y="${T}" width="${(X(endStudy)-L).toFixed(1)}" height="${ih}" fill="var(--band)"/>`
+   + `<text x="${L+7}" y="${T+17}" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="var(--ink-mid)">coaching + college</text>`;
+  g+=`<path d="${mk(bd)}" fill="none" stroke="var(--blue)" stroke-width="2.6"/>`;
+  g+=`<path d="${mk(d)}" fill="none" stroke="var(--pink)" stroke-width="3.4"/>`;
+  if(real.be&&real.be<=show){
+    const p=d[real.be-1];
+    g+=`<line x1="${X(p.y).toFixed(1)}" y1="${T}" x2="${X(p.y).toFixed(1)}" y2="${Y(p.net).toFixed(1)}" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 3"/>`
+     + `<circle cx="${X(p.y).toFixed(1)}" cy="${Y(p.net).toFixed(1)}" r="7" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>`
+     + `<text x="${(X(p.y)+11).toFixed(1)}" y="${T+17}" font-family="DM Sans,sans-serif" font-weight="700" font-size="13" fill="var(--ink)">clear at ${START_AGE+p.y}</text>`;
+  }
+  $("cross").innerHTML=`<title id="crossT">Net position over time, on the advertised package and on real graduate earnings</title>`+g;
+}
+
+function distChart(pkgMonthly,wage){
+  const W=800,H=330,L=58,R=34,T=30,B=58,iw=W-L-R,ih=H-T-B;
+  const MAXM=Math.max(90000,pkgMonthly*1.12);
+  const X=m=>L+(m/MAXM)*iw;
+  let peak=0; const pts=[];
+  for(let i=0;i<=260;i++){const m=200+(MAXM-200)*i/260;const y=pdf(m);if(y>peak)peak=y;pts.push([m,y]);}
+  const Y=v=>T+ih-(v/peak)*ih*.9;
+  let area="M "+X(pts[0][0]).toFixed(1)+" "+(T+ih);
+  pts.forEach(p=>{area+=" L "+X(p[0]).toFixed(1)+" "+Y(p[1]).toFixed(1);});
+  area+=" L "+X(pts[pts.length-1][0]).toFixed(1)+" "+(T+ih)+" Z";
+  let g=`<path d="${area}" fill="var(--band)" stroke="var(--ink)" stroke-width="2.5"/>`;
+  g+=`<line x1="${L}" y1="${T+ih}" x2="${W-R}" y2="${T+ih}" stroke="var(--ink)" stroke-width="2"/>`;
+  const tick=MAXM>120000?30000:20000;
+  for(let m=0;m<=MAXM;m+=tick)
+    g+=`<text x="${X(m).toFixed(1)}" y="${T+ih+21}" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="var(--ink-mid)">₹${(m/1000).toFixed(0)}k</text>`;
+  g+=`<text x="${(L+iw/2).toFixed(0)}" y="${H-9}" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="var(--ink-mid)">monthly pay, employed engineering graduates aged 22–26</text>`;
+  const mark=(m,label,col,up)=>{
+    const x=X(m), top=up?T+6:T+ih-78;
+    return `<line x1="${x.toFixed(1)}" y1="${top}" x2="${x.toFixed(1)}" y2="${T+ih}" stroke="${col}" stroke-width="2.5" stroke-dasharray="5 4"/>`
+     + `<text x="${(x+7).toFixed(1)}" y="${top+13}" font-family="DM Sans,sans-serif" font-size="12.5" font-weight="700" fill="${col}">${label}</text>`;
+  };
+  g+=mark(MED,"median ₹28k","var(--ink-mid)",false);
+  g+=mark(P90,"90th pct ₹50k","var(--ink-mid)",false);
+  if(pkgMonthly<MAXM&&pkgMonthly>0) g+=mark(pkgMonthly,"the brochure","var(--pink)",true);
+  g+=`<line x1="${X(wage).toFixed(1)}" y1="${T+ih}" x2="${X(wage).toFixed(1)}" y2="${T+ih-16}" stroke="var(--blue)" stroke-width="4"/>`
+   + `<text x="${X(wage).toFixed(1)}" y="${T+ih-22}" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="var(--blue)">your branch</text>`;
+  $("dist").innerHTML=`<title id="distT">Distribution of monthly earnings for employed engineering graduates, with the advertised package marked</title>`+g;
+}
+
+function run(first){
+  const b=BRANCHES[+$("branch").value], c=COLLEGES[+$("college").value], k=COACH[+$("coach").value];
+  const prepYr=+$("prep").value;
+  const pkgLakh=+$("pkg").value||0, pkgAnnual=pkgLakh*100000, pkgMonthly=pkgAnnual/12;
+
+  const coachTotal=k.yr*prepYr;
+  const total=coachTotal+c.total;
+
+  const real=model(prepYr,k.yr,c.total,b.wage*12);
+  const bro=model(prepYr,k.yr,c.total,pkgAnnual);
+  const v=verdict(real.be,prepYr);
+
+  $("tBro").textContent="₹"+pkgLakh+" L";
+  $("tReal").textContent=lk(b.wage*12);
+  $("tRealNote").textContent=b.note;
+  const p=pctOf(pkgMonthly);
+  $("tPct").textContent=pkgMonthly<=0?"—":ord(p)+" pct";
+
+  $("ledTag").textContent=prepYr+" yr prep + 4 yr degree";
+  const rows=[];
+  if(prepYr>0&&coachTotal>0) rows.push([k.n,`${inr(k.yr)} a year × ${prepYr}`,coachTotal]);
+  else if(prepYr>0) rows.push([k.n,`${prepYr} year${prepYr>1?"s":""} of preparation at no cost`,0]);
+  rows.push([c.n,"four-year cost including hostel and mess",c.total]);
+  $("ledger").innerHTML=rows.map(r=>
+    `<div class="li"><span class="d">${r[0]}<em>${r[1]}</em></span><span class="a num">−${inr(r[2])}</span></div>`).join("")
+    +`<div class="li tot"><span class="d">What the degree cost</span><span class="a num">−${inr(total)}</span></div>`;
+
+  $("beBig").textContent=real.be?real.be+" yrs":"never";
+  $("beSub").textContent=real.be
+    ? `from your first day of coaching until the degree has paid for itself — that's age ${START_AGE+real.be}`
+    : "on the median salary the degree never clears its own cost in a 34-year window";
+  const st=$("stamp"); st.textContent=v.t;
+  if(!first){st.classList.remove("drop"); void st.offsetWidth; st.classList.add("drop");}
+
+  const broTxt=bro.be?`${bro.be} years`:"never";
+  const mult=pkgMonthly>0?(pkgMonthly/b.wage):0;
+  $("after").innerHTML=`${v.a}<br><br>On the advertised package it would take <b>${broTxt}</b>. That package is <b>${mult?mult.toFixed(1)+"×":"—"}</b> what a graduate in your branch typically earns.`;
+
+  $("distLede").textContent=pkgMonthly>0
+    ? `₹${pkgLakh} lakh a year is ${inr(pkgMonthly)} a month. Against what employed engineering graduates aged 22 to 26 actually earn, that lands around the ${ord(p)} percentile — a figure most of a graduating batch will never see, printed as though it were normal.`
+    : "Put in the package your college advertises to see where it lands.";
+
+  $("fEmp").textContent=(b.emp*100).toFixed(b.src?1:0)+"%";
+  $("fEmpT").textContent=b.src
+    ? `Employability for ${b.n.toLowerCase()} graduates, India Skills Report 2026. The rest are assessed as not job-ready on the day they graduate.`
+    : `Estimated employability for ${b.n.toLowerCase()} graduates, placed inside the published spread between computer science at 80% and polytechnic streams at 33%.`;
+
+  distChart(pkgMonthly,b.wage);
+  lineChart(real,bro,prepYr);
+}
+
+["branch","college","prep","coach"].forEach(i=>$(i).addEventListener("change",()=>run()));
+$("pkg").addEventListener("input",()=>run());
+run(true);
+</script>
